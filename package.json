@@ -10,7 +10,7 @@
   "icon": "images/package.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/skonves/vscode-packwerk-vscode.git"
+    "url": "https://github.com/Gusto/packwerk-vscode.git"
   },
   "categories": [
     "Programming Languages",
