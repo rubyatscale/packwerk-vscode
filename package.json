@@ -55,7 +55,7 @@
       "properties": {
         "ruby.packwerk.executable": {
           "type": "string",
-          "default": "bin/packwerk",
+          "default": "bin/packwerk check",
           "description": "execution path of packwerk check. `bin/packwerk check` is the default. Other example is `bundle exec packwerk check`"
         },
         "ruby.packwerk.onSave": {

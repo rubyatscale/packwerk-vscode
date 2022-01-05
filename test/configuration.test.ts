@@ -36,10 +36,10 @@ const { getConfig } = extensionConfig;
 describe('PackwerkConfig', () => {
   describe('getConfig', () => {
     describe('.executable', () => {
-      it('is set to "bin/packwerk" by default', () => {
+      it('is set to "bin/packwerk check" by default', () => {
         expect(getConfig()).to.have.property(
           'executable',
-          'bin/packwerk'
+          'bin/packwerk check'
         );
       });
 

@@ -18,7 +18,7 @@ Specify configuration (via navigating to `File > Preferences > Workspace Setting
 
 ```javascript
 {
-  // If not specified, uses `bin/packwerk` (default and recommended, as this is what the packwerk setup guide recommends for executing packwerk)
+  // If not specified, uses `bin/packwerk check` (default and recommended, as this is what the packwerk setup guide recommends for executing packwerk)
   // You may want to change this if, for example, you have a remote development environment that executes packwerk in a remote box.
   "ruby.packwerk.executable": "",
 

@@ -13,7 +13,7 @@ export interface PackwerkConfig {
  */
 export const getConfig: () => PackwerkConfig = () => {
   const conf = vs.workspace.getConfiguration('ruby.packwerk');
-  let executable = conf.get('executable', 'bin/packwerk');
+  let executable = conf.get('executable', 'bin/packwerk check');
 
   console.debug(`[DEBUG] Parsing config, found executable '${executable}'`)
 
