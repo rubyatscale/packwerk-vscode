@@ -1,0 +1,86 @@
+{
+  "name": "packwerk-vscode",
+  "version": "0.0.1",
+  "publisher": "Gusto",
+  "displayName": "packwerk-vscode",
+  "description": "execute packwerk check for current Ruby code.",
+  "engines": {
+    "vscode": "^1.32.0"
+  },
+  "icon": "images/package.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skonves/vscode-packwerk-vscode.git"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:ruby",
+    "onCommand:ruby.packwerk"
+  ],
+  "main": "./out/src/extension",
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "format": "tsfmt -r src/*",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "ruby",
+        "extensions": [
+          ".rb"
+        ]
+      },
+      {
+        "id": "gemfile",
+        "filenamePatterns": [
+          "Gemfile"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "ruby.packwerk",
+        "title": "Packwerk: Run packwerk check"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Packwerk-VScode configuration",
+      "properties": {
+        "ruby.packwerk.executable": {
+          "type": "string",
+          "default": "bin/packwerk",
+          "description": "execution path of packwerk check. `bin/packwerk check` is the default. Other example is `bundle exec packwerk check`"
+        },
+        "ruby.packwerk.onSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "execute packwerk on save, default true"
+        },
+        "ruby.packwerk.showWarnings": {
+          "type": "boolean",
+          "default": false,
+          "description": "show warnings, default false"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.9",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^13.7.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "proxyquire": "^2.1.0",
+    "sinon": "^7.3.0",
+    "tslint": "^5.1.0",
+    "typescript": "^3.8.3",
+    "vscode": "^1.1.0"
+  }
+}
