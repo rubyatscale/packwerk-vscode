@@ -74,7 +74,7 @@ export class Packwerk {
           let decolorizedMessage = offence.message.replace(
             /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
 
-          const message = `${decolorizedMessage} (${offence.type})`;
+          const message = decolorizedMessage;
           console.debug(`[DEBUG] Adding vscode.Diagnostic:`, { range, message })
           const diagnostic = new vscode.Diagnostic(
             range,

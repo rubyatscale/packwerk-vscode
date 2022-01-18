@@ -10,7 +10,7 @@ This extension provides an interface to packwerk for vscode.
 
 ## Stability
 
-This is version 0.0.2. This is an alpha extension that is not guaranteed to work. We encourage you to experiment with it and provide feedback!
+This is an alpha extension that is not guaranteed to work. We encourage you to experiment with it and provide feedback!
 
 ## Configuration
 

@@ -20,7 +20,6 @@ export function parseOutput(str: string): PackwerkOutput {
       if (!files.has(file)) files.set(file, { path: file, violations: [] });
 
       files.get(file)!.violations.push({
-        type,
         message,
         location: {
           line,

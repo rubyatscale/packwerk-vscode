@@ -6,7 +6,6 @@ interface PackwerkLocation {
 
 export interface PackwerkViolation {
   message: string;
-  type: string;
   location: PackwerkLocation;
 }
 
