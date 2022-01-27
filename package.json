@@ -1,5 +1,5 @@
 {
-  "name": "packwerk-vscode",
+  "name": "@gusto/packwerk-vscode",
   "version": "0.0.3",
   "publisher": "Gusto",
   "displayName": "packwerk-vscode",
