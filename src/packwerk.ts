@@ -49,6 +49,7 @@ export class Packwerk {
 
     let onDidExec = (error: Error, stdout: string, stderr: string) => {
       console.debug(`[DEBUG] Finished running command, in onDidExec`)
+      console.debug(`[DEBUG] Error, stderr`, error, stderr)
       this.reportError(error, stderr);
       let packwerk = this.parse(stdout);
       if (packwerk === undefined || packwerk === null) {
@@ -141,8 +142,12 @@ export class Packwerk {
   private parse(output: string): PackwerkOutput | null {
     let packwerk: PackwerkOutput;
     if (output.length < 1) {
+      console.debug(`[DEBUG] Output is ${output}`)
       let message = `command ${this.config.executable} returns empty output! please check configuration.`;
-      vscode.window.showWarningMessage(message);
+      console.debug(`[DEBUG] ${message}`)
+      // For now, we do not show this error message. There are lots of reasons why this could fail, so
+      // we turn it off so as to not bother the user
+      // vscode.window.showWarningMessage(message);
 
       return null;
     }
