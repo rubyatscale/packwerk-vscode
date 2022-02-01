@@ -1,6 +1,6 @@
 import { PackwerkOutput, PackwerkFile } from './packwerkOutput';
 
-const regex = /^(?<file>[^\n]*?):(?<row>\d+):(?<column>\d+)$(?<message>(?<type>[^ ]+).*?'::(?<symbol>.*?)'.*?)^\s?$/gms;
+const regex = /^(?<file>[^\n]*?):(?<row>\d+):(?<column>\d+)$(?<message>.*?::(?<symbol>.*?)['| ].*?)^\s?$/gms;
 
 export function parseOutput(str: string): PackwerkOutput {
   try {
@@ -10,12 +10,12 @@ export function parseOutput(str: string): PackwerkOutput {
 
     let arr: RegExpExecArray;
     while ((arr = regex.exec(str)) !== null) {
+      console.log("[DEBUG] Parsed regular expression", arr)
       const file = arr[1];
       const line = Number(arr[2]);
       const column = Number(arr[3]);
       const message = arr[4].trim();
-      const type = arr[5].toLocaleLowerCase().trim();
-      const symbol = arr[6];
+      const symbol = arr[5];
 
       if (!files.has(file)) files.set(file, { path: file, violations: [] });
 
