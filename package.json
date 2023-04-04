@@ -2,7 +2,7 @@
   "name": "packwerk-vscode",
   "version": "0.0.5",
   "publisher": "Gusto",
-  "displayName": "packwerk-vscode",
+  "displayName": "Packwerk",
   "description": "execute packwerk check for current Ruby code.",
   "engines": {
     "vscode": "^1.32.0"
@@ -51,7 +51,7 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "Packwerk-VScode configuration",
+      "title": "Packwerk",
       "properties": {
         "ruby.packwerk.executable": {
           "type": "string",
