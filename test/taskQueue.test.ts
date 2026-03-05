@@ -31,7 +31,7 @@ describe('TaskQueue', () => {
   });
 
   context('when one task is added to queue', () => {
-    it('calles body', () => {
+    it('calls body', () => {
       queue.enqueue(taskWrapper.task);
       expect(taskWrapper.isBodyCalled).to.be.true;
       expect(taskWrapper.token.isCanceled).to.be.false;
@@ -60,7 +60,7 @@ describe('TaskQueue', () => {
   });
 
   context('when multiple tasks with different urls are added to queue', () => {
-    it('calles body of only first task', () => {
+    it('calls body of only first task', () => {
       queue.enqueue(taskWrapper.task);
       queue.enqueue(taskWrapper2.task);
       expect(taskWrapper.isBodyCalled).to.be.true;

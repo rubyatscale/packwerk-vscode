@@ -8,7 +8,7 @@ export interface TaskToken {
 export type CancelCallback = () => void;
 
 /**
- * Task with async operation. It will be enqueued to and managed by
+ * Task with an async operation. It will be enqueued to and managed by
  * TaskQueue. Useful for spawning ChildProcess.
  */
 export class Task {
@@ -21,7 +21,7 @@ export class Task {
 
   /**
    * @param body Function of task body, which returns callback called
-   *             when cancelation is requested. You should call
+   *             when cancellation is requested. You should call
    *             token.finished() after async operation is done.
    */
   constructor(uri: vscode.Uri, body: (token: TaskToken) => CancelCallback) {
@@ -69,9 +69,9 @@ export class Task {
 }
 
 /**
- * Provides single-threaded task queue which runs single asynchronous
+ * Provides single-threaded task queue which runs a single asynchronous
  * Task at a time. This restricts concurrent execution of packwerk
- * processes to prevent from running out machine resource.
+ * processes to prevent running out of machine resources.
  */
 export class TaskQueue {
   private tasks: Task[] = [];
