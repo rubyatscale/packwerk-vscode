@@ -6,7 +6,7 @@ This is a collection of some relatively unorganized notes for people interested 
 - click to open public API where constant lives
 
 ## Future work items
-- add the ability to publish the extension from CI. vsce tool let’s you do package and publish. If you do publish there is a signing step that happens, keys to setup, etc. If you don’t do that, you package it in CI or local and upload it in the extension marketplace.
+- add the ability to publish the extension from CI. The vsce tool lets you package and publish. If you do publish there is a signing step that happens, keys to set up, etc. If you don’t do that, you package it in CI or locally and upload it to the extension marketplace.
 - Add buildkite CI support and add proper testing
 
 Improve screenshot gif
