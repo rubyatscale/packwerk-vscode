@@ -1,4 +1,0 @@
-[default.extend-words]
-# tslint rule names - these are valid identifiers, not typos
-forin = "forin"
-inferrable = "inferrable"
