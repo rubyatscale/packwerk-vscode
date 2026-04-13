@@ -188,13 +188,13 @@ export class Packwerk {
       );
       return true;
     } else if (error && (<any>error).code === 127 && this.config.showWarnings) {
-      // TODO: likely redundant debug logging; consider removing
+      // TODO: likely redundant; the same stderr is already surfaced via showWarningMessage below
       // eslint-disable-next-line no-console
       console.debug('[DEBUG] Showing error with code 127', stderr);
       vscode.window.showWarningMessage(stderr);
       return true;
     } else if (errorOutput.length > 0 && this.config.showWarnings) {
-      // TODO: likely redundant debug logging; consider removing
+      // TODO: likely redundant; the same stderr is already surfaced via showWarningMessage below
       // eslint-disable-next-line no-console
       console.debug('[DEBUG] Showing error with errorOutput.length > 0', stderr);
       vscode.window.showWarningMessage(stderr);
