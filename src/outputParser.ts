@@ -10,7 +10,6 @@ export function parseOutput(str: string): PackwerkOutput {
 
     let arr: RegExpExecArray;
     while ((arr = regex.exec(str)) !== null) {
-      // TODO: likely redundant debug logging; consider removing
       // eslint-disable-next-line no-console
       console.log('[DEBUG] Parsed regular expression', arr);
       const file = arr[1];

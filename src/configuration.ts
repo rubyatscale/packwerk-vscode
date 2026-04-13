@@ -15,7 +15,6 @@ export const getConfig: () => PackwerkConfig = () => {
   const conf = vs.workspace.getConfiguration('ruby.packwerk');
   let executable = conf.get('executable', 'bin/packwerk check');
 
-  // TODO: likely redundant debug logging; consider removing
   // eslint-disable-next-line no-console
   console.debug(`[DEBUG] Parsing config, found executable '${executable}'`);
 
