@@ -48,11 +48,16 @@ export class Packwerk {
     let relativeFileName = fileName.replace(currentPath + '/', '');
 
     let onDidExec = (error: Error, stdout: string, stderr: string) => {
+      // TODO: likely redundant debug logging; consider removing
+      // eslint-disable-next-line no-console
       console.debug('[DEBUG] Finished running command, in onDidExec');
+      // eslint-disable-next-line no-console
       console.debug('[DEBUG] Error, stderr', error, stderr);
       this.reportError(error, stderr);
       let packwerk = this.parse(stdout);
       if (packwerk === undefined || packwerk === null) {
+        // TODO: likely redundant debug logging; consider removing
+        // eslint-disable-next-line no-console
         console.debug('[DEBUG] packwerk is undefined or null, returning from onDidExec');
         return;
       }
@@ -76,6 +81,8 @@ export class Packwerk {
             /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
 
           const message = decolorizedMessage;
+          // TODO: likely redundant debug logging; consider removing
+          // eslint-disable-next-line no-console
           console.debug('[DEBUG] Adding vscode.Diagnostic:', { range, message });
           const diagnostic = new vscode.Diagnostic(
             range,
@@ -131,6 +138,8 @@ export class Packwerk {
     cb: (err: Error, stdout: string, stderr: string) => void
   ): cp.ChildProcess {
     let command = `${this.config.executable} ${fileName}`;
+    // TODO: likely redundant debug logging; consider removing
+    // eslint-disable-next-line no-console
     console.debug(`[DEBUG] Running command ${command}`);
 
     let child = cp.exec(command, options, cb);
@@ -142,8 +151,11 @@ export class Packwerk {
   private parse(output: string): PackwerkOutput | null {
     let packwerk: PackwerkOutput;
     if (output.length < 1) {
+      // TODO: likely redundant debug logging; consider removing
+      // eslint-disable-next-line no-console
       console.debug(`[DEBUG] Output is ${output}`);
       let message = `command ${this.config.executable} returns empty output! please check configuration.`;
+      // eslint-disable-next-line no-console
       console.debug(`[DEBUG] ${message}`);
       // For now, we do not show this error message. There are lots of reasons why this could fail, so
       // we turn it off so as to not bother the user
@@ -176,10 +188,14 @@ export class Packwerk {
       );
       return true;
     } else if (error && (<any>error).code === 127 && this.config.showWarnings) {
+      // TODO: likely redundant debug logging; consider removing
+      // eslint-disable-next-line no-console
       console.debug('[DEBUG] Showing error with code 127', stderr);
       vscode.window.showWarningMessage(stderr);
       return true;
     } else if (errorOutput.length > 0 && this.config.showWarnings) {
+      // TODO: likely redundant debug logging; consider removing
+      // eslint-disable-next-line no-console
       console.debug('[DEBUG] Showing error with errorOutput.length > 0', stderr);
       vscode.window.showWarningMessage(stderr);
       return true;

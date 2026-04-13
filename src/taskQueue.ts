@@ -96,6 +96,8 @@ export class TaskQueue {
     let uriString = uri.toString(true);
     this.tasks.forEach((task) => {
       if (task.uri.toString(true) === uriString) {
+        // TODO: likely redundant debug logging; consider removing
+        // eslint-disable-next-line no-console
         console.debug(`[DEBUG] Canceling existing task for ${task.uri}`);
         task.cancel();
       }
