@@ -20,8 +20,8 @@ vsStub.workspace.getConfiguration = (
   };
 
   return {
-    get: <T>(section: string, defaultValue: T): T =>
-      defaultConfig[section] || defaultValue,
+    get: <T>(key: string, defaultValue: T): T =>
+      defaultConfig[key] || defaultValue,
   };
 };
 

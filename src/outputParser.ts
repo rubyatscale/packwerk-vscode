@@ -10,14 +10,15 @@ export function parseOutput(str: string): PackwerkOutput {
 
     let arr: RegExpExecArray;
     while ((arr = regex.exec(str)) !== null) {
-      console.log("[DEBUG] Parsed regular expression", arr)
+      // eslint-disable-next-line no-console
+      console.log('[DEBUG] Parsed regular expression', arr);
       const file = arr[1];
       const line = Number(arr[2]);
       const column = Number(arr[3]);
       const message = arr[4].trim();
       const symbol = arr[5];
 
-      if (!files.has(file)) files.set(file, { path: file, violations: [] });
+      if (!files.has(file)) { files.set(file, { path: file, violations: [] }); }
 
       files.get(file)!.violations.push({
         message,

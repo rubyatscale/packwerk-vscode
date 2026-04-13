@@ -45,15 +45,18 @@ export class Packwerk {
     const fileName = document.fileName;
     const uri = document.uri;
     let currentPath = getCurrentPath(fileName);
-    let relativeFileName = fileName.replace(currentPath + '/', '')
+    let relativeFileName = fileName.replace(currentPath + '/', '');
 
     let onDidExec = (error: Error, stdout: string, stderr: string) => {
-      console.debug(`[DEBUG] Finished running command, in onDidExec`)
-      console.debug(`[DEBUG] Error, stderr`, error, stderr)
+      // eslint-disable-next-line no-console
+      console.debug('[DEBUG] Finished running command, in onDidExec');
+      // eslint-disable-next-line no-console
+      console.debug('[DEBUG] Error, stderr', error, stderr);
       this.reportError(error, stderr);
       let packwerk = this.parse(stdout);
       if (packwerk === undefined || packwerk === null) {
-        console.debug(`[DEBUG] packwerk is undefined or null, returning from onDidExec`)
+        // eslint-disable-next-line no-console
+        console.debug('[DEBUG] packwerk is undefined or null, returning from onDidExec');
         return;
       }
 
@@ -76,7 +79,8 @@ export class Packwerk {
             /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g, '');
 
           const message = decolorizedMessage;
-          console.debug(`[DEBUG] Adding vscode.Diagnostic:`, { range, message })
+          // eslint-disable-next-line no-console
+          console.debug('[DEBUG] Adding vscode.Diagnostic:', { range, message });
           const diagnostic = new vscode.Diagnostic(
             range,
             message,
@@ -130,8 +134,9 @@ export class Packwerk {
     options: cp.ExecOptions,
     cb: (err: Error, stdout: string, stderr: string) => void
   ): cp.ChildProcess {
-    let command = `${this.config.executable} ${fileName}`
-    console.debug(`[DEBUG] Running command ${command}`)
+    let command = `${this.config.executable} ${fileName}`;
+    // eslint-disable-next-line no-console
+    console.debug(`[DEBUG] Running command ${command}`);
 
     let child = cp.exec(command, options, cb);
     child.stdin.write(fileContents); // why do we need this?
@@ -142,9 +147,11 @@ export class Packwerk {
   private parse(output: string): PackwerkOutput | null {
     let packwerk: PackwerkOutput;
     if (output.length < 1) {
-      console.debug(`[DEBUG] Output is ${output}`)
+      // eslint-disable-next-line no-console
+      console.debug(`[DEBUG] Output is ${output}`);
       let message = `command ${this.config.executable} returns empty output! please check configuration.`;
-      console.debug(`[DEBUG] ${message}`)
+      // eslint-disable-next-line no-console
+      console.debug(`[DEBUG] ${message}`);
       // For now, we do not show this error message. There are lots of reasons why this could fail, so
       // we turn it off so as to not bother the user
       // vscode.window.showWarningMessage(message);
@@ -176,11 +183,15 @@ export class Packwerk {
       );
       return true;
     } else if (error && (<any>error).code === 127 && this.config.showWarnings) {
-      console.debug('[DEBUG] Showing error with code 127', stderr)
+      // TODO: likely redundant; the same stderr is already surfaced via showWarningMessage below
+      // eslint-disable-next-line no-console
+      console.debug('[DEBUG] Showing error with code 127', stderr);
       vscode.window.showWarningMessage(stderr);
       return true;
     } else if (errorOutput.length > 0 && this.config.showWarnings) {
-      console.debug('[DEBUG] Showing error with errorOutput.length > 0', stderr)
+      // TODO: likely redundant; the same stderr is already surfaced via showWarningMessage below
+      // eslint-disable-next-line no-console
+      console.debug('[DEBUG] Showing error with errorOutput.length > 0', stderr);
       vscode.window.showWarningMessage(stderr);
       return true;
     }
