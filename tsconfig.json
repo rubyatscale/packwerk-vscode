@@ -7,7 +7,12 @@
             "es6"
         ],
         "sourceMap": true,
-        "rootDir": "."
+        "rootDir": ".",
+        "strict": true,
+        "types": [
+            "node",
+            "mocha"
+        ]
     },
     "exclude": [
         "node_modules",

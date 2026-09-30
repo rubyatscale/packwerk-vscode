@@ -11,8 +11,11 @@ export function activate(context: vscode.ExtensionContext): void {
 
   const packwerk = new Packwerk(diag);
   const disposable = vscode.commands.registerCommand('ruby.packwerk', () => {
-    const document = vscode.window.activeTextEditor.document;
-    packwerk.execute(document);
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+    packwerk.execute(editor.document);
   });
 
   context.subscriptions.push(disposable);

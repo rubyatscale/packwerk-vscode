@@ -31,7 +31,7 @@ export class Task {
 
   public run(): Promise<void> {
     if (this.isCanceled) {
-      return;
+      return Promise.resolve();
     }
     let task = this;
     return new Promise<void>((resolve, reject) => {
@@ -117,7 +117,7 @@ export class TaskQueue {
       try {
         await task.run();
       } catch (e) {
-        console.error('Error while running packwerk: ', e.message, e.stack);
+        console.error('Error while running packwerk: ', e);
       }
       this.tasks.shift();
     }

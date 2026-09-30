@@ -47,7 +47,7 @@ export class Packwerk {
     let currentPath = getCurrentPath(fileName);
     let relativeFileName = fileName.replace(currentPath + '/', '');
 
-    let onDidExec = (error: Error, stdout: string, stderr: string) => {
+    let onDidExec = (error: Error | null, stdout: string, stderr: string) => {
       // eslint-disable-next-line no-console
       console.debug('[DEBUG] Finished running command, in onDidExec');
       // eslint-disable-next-line no-console
@@ -64,7 +64,7 @@ export class Packwerk {
 
       let entries: [vscode.Uri, vscode.Diagnostic[]][] = [];
       packwerk.files.forEach((file: PackwerkFile) => {
-        let diagnostics = [];
+        let diagnostics: vscode.Diagnostic[] = [];
         file.violations.forEach((offence: PackwerkViolation) => {
           const loc = offence.location;
           const range = new vscode.Range(
@@ -131,21 +131,21 @@ export class Packwerk {
   private executePackwerkCheck(
     fileName: string,
     fileContents: string,
-    options: cp.ExecOptions,
-    cb: (err: Error, stdout: string, stderr: string) => void
+    options: cp.ExecOptionsWithStringEncoding,
+    cb: (err: Error | null, stdout: string, stderr: string) => void
   ): cp.ChildProcess {
     let command = `${this.config.executable} ${fileName}`;
     // eslint-disable-next-line no-console
     console.debug(`[DEBUG] Running command ${command}`);
 
     let child = cp.exec(command, options, cb);
-    child.stdin.write(fileContents); // why do we need this?
-    child.stdin.end();
+    child.stdin!.write(fileContents); // why do we need this?
+    child.stdin!.end();
     return child;
   }
 
   private parse(output: string): PackwerkOutput | null {
-    let packwerk: PackwerkOutput;
+    let packwerk: PackwerkOutput | null = null;
     if (output.length < 1) {
       // eslint-disable-next-line no-console
       console.debug(`[DEBUG] Output is ${output}`);
@@ -175,7 +175,7 @@ export class Packwerk {
     return packwerk;
   }
 
-  private reportError(error: Error, stderr: string): boolean {
+  private reportError(error: Error | null, stderr: string): boolean {
     let errorOutput = stderr.toString();
     if (error && (<any>error).code === 'ENOENT') {
       vscode.window.showWarningMessage(

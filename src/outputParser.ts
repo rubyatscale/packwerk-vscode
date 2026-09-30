@@ -8,7 +8,7 @@ export function parseOutput(str: string): PackwerkOutput {
   } catch {
     const files = new Map<string, PackwerkFile>();
 
-    let arr: RegExpExecArray;
+    let arr: RegExpExecArray | null;
     while ((arr = regex.exec(str)) !== null) {
       // eslint-disable-next-line no-console
       console.log('[DEBUG] Parsed regular expression', arr);

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as cp from 'child_process';
-import * as pq from 'proxyquire';
+import pq from 'proxyquire';
 import * as vsStub from 'vscode';
 
 // override vs.workspace.getConfiguration to return default values for each of the extension's
@@ -9,19 +9,19 @@ const { getConfiguration: _getConfiguration } = vsStub.workspace;
 
 vsStub.workspace.getConfiguration = (
   section?: string,
-  resource?: vsStub.Uri | null
+  scope?: vsStub.ConfigurationScope | null
 ): any => {
   if (section !== 'ruby.packwerk') {
-    return _getConfiguration(section, resource);
+    return _getConfiguration(section, scope);
   }
 
-  const defaultConfig = {
+  const defaultConfig: Record<string, unknown> = {
     onSave: true,
   };
 
   return {
     get: <T>(key: string, defaultValue: T): T =>
-      defaultConfig[key] || defaultValue,
+      (defaultConfig[key] as T) || defaultValue,
   };
 };
 
