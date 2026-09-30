@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 class TestTaskWrapper {
   public readonly url: vscode.Uri;
   public readonly task: Task;
-  public token?: TaskToken;
+  public token!: TaskToken;
   public isBodyCalled: boolean = false;
   public isCancelCallbackCalled: boolean = false;
 
