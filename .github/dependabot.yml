@@ -14,9 +14,13 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    versioning-strategy: "increase-if-necessary"
     groups:
       npm:
         patterns:
           - "*"
+        update-types:
+          - "minor"
+          - "patch"
     cooldown:
       default-days: 7
